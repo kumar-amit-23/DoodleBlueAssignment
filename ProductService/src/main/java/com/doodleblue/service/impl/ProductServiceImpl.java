@@ -14,9 +14,15 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepo;
 
 	@Override
-	public Product findById(Long id) {
+	public Product findById(Long id) throws Exception {
 		// TODO Auto-generated method stub
-		return productRepo.findById(id).get();
+		System.out.println("Product" + productRepo.findById(id).get());
+		try {
+			return productRepo.findById(id).get();
+		} catch (Exception e) {
+			throw new Exception("No product Exist");
+		}
+
 	}
 
 }

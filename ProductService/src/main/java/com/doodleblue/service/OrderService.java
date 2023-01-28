@@ -10,7 +10,7 @@ import com.doodleblue.model.Product;
 @Service
 public interface OrderService {
 
-	OrderProduct orderByUserId(OrderProduct order, Long userId);
+	OrderProduct orderByUserId(OrderProduct order, Long userId) throws Exception;
 
 	List<Product> getAllOrderfromUserId(Long userId);
 

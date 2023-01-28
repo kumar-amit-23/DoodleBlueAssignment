@@ -24,27 +24,25 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional
-	public OrderProduct orderByUserId(OrderProduct order, Long userId) {
-		// TODO Auto-generated method stub
+	public OrderProduct orderByUserId(OrderProduct order, Long userId) throws Exception {
 
 		Product prodObj = this.productRepo.findById(order.getProductId()).get();
 
-		// check for quantity if true save then not.
+//		check if the product exist in the table or not and if we have enough stock or not
+		if (prodObj != null && prodObj.getQuanity() >= order.getQuantity()) {
+			OrderProduct orderObj = this.orderRepo.save(order);
+			prodObj.setQuanity(prodObj.getQuanity() - order.getQuantity());
+			this.productRepo.save(prodObj);
+			return orderObj;
+		} else {
+			throw new Exception("Out of Stock");
+		}
 
-		OrderProduct orderObj = this.orderRepo.save(order);
-
-		prodObj.setQuanity(prodObj.getQuanity() - order.getQuantity());
-
-		this.productRepo.save(prodObj);
-
-		// check for exception
-
-		return orderObj;
 	}
 
 	@Override
 	public List<Product> getAllOrderfromUserId(Long userId) {
-		// TODO Auto-generated method stub
+
 		List<OrderProduct> orderList = this.orderRepo.findAllByUserId(userId);
 		List<Product> productList = new ArrayList<>();
 		for (OrderProduct o : orderList) {

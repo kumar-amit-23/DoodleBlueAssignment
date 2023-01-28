@@ -1,6 +1,8 @@
 package com.doodleblue.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +18,16 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
+//	Get the details of the product from the product Id.
 	@GetMapping("/{productId}")
-	public Product findProductById(@PathVariable Long productId) {
+	public ResponseEntity<?> findProductById(@PathVariable Long productId) {
 
-		return this.productService.findById(productId);
+		try {
+			Product prod = this.productService.findById(productId);
+			return new ResponseEntity<>(prod, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+		}
 
 	}
 
