@@ -6,5 +6,5 @@ import com.doodleblue.model.Product;
 
 @Service
 public interface ProductService {
-	Product findById(Long id) throws Exception;
+	Product findById(Integer id) throws Exception;
 }

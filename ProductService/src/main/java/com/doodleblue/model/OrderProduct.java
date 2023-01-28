@@ -10,19 +10,19 @@ public class OrderProduct {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long orderId;
+	private Integer orderId;
 
-	private Long userId;
+	private Integer userId;
 
 	private Integer quantity;
 
-	private Long productId;
+	private Integer productId;
 
 	public OrderProduct() {
 
 	}
 
-	public OrderProduct(Long orderId, Long userId, Integer quantity, Long productId) {
+	public OrderProduct(Integer orderId, Integer userId, Integer quantity, Integer productId) {
 		super();
 		this.orderId = orderId;
 		this.userId = userId;
@@ -30,19 +30,19 @@ public class OrderProduct {
 		this.productId = productId;
 	}
 
-	public Long getOrderId() {
+	public Integer getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(Long orderId) {
+	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
 
-	public Long getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Long userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -54,12 +54,18 @@ public class OrderProduct {
 		this.quantity = quantity;
 	}
 
-	public Long getProductId() {
+	public Integer getProductId() {
 		return productId;
 	}
 
-	public void setProductId(Long productId) {
+	public void setProductId(Integer productId) {
 		this.productId = productId;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderProduct [orderId=" + orderId + ", userId=" + userId + ", quantity=" + quantity + ", productId="
+				+ productId + "]";
 	}
 
 }

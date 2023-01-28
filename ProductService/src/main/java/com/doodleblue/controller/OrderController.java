@@ -23,10 +23,17 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
+//	Save Dummy Values into the DB.
+	@PostMapping
+	public void saveDummyValuesInDatabase() {
+		this.orderService.saveDummyValues();
+	}
+
 //	order by order id	
 	@PostMapping("/{userId}")
-	public ResponseEntity<?> orderByUserId(@RequestBody OrderProduct order, @PathVariable Long userId) {
+	public ResponseEntity<?> orderByUserId(@RequestBody OrderProduct order, @PathVariable Integer userId) {
 		try {
+			System.out.println("Order ->" + order.toString() + " userId -> " + userId);
 			OrderProduct orderObj = this.orderService.orderByUserId(order, userId);
 			return new ResponseEntity<>(orderObj, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -37,7 +44,7 @@ public class OrderController {
 
 //	Fetch product details from the product table based on UserId inserted into the order table.
 	@GetMapping("/{userId}")
-	public List<Product> getAllOrderfromUserId(@PathVariable Long userId) {
+	public List<Product> getAllOrderfromUserId(@PathVariable Integer userId) {
 		return this.orderService.getAllOrderfromUserId(userId);
 	}
 

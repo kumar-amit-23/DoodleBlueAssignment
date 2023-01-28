@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import com.doodleblue.model.OrderProduct;
 
 @Repository
-public interface OrderRepository extends JpaRepository<OrderProduct, Long> {
+public interface OrderRepository extends JpaRepository<OrderProduct, Integer> {
 
-	List<OrderProduct> findAllByUserId(Long userId);
+	List<OrderProduct> findAllByUserId(Integer userId);
 
 }

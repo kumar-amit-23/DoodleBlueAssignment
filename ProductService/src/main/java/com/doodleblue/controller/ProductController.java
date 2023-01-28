@@ -20,7 +20,7 @@ public class ProductController {
 
 //	Get the details of the product from the product Id.
 	@GetMapping("/{productId}")
-	public ResponseEntity<?> findProductById(@PathVariable Long productId) {
+	public ResponseEntity<?> findProductById(@PathVariable Integer productId) {
 
 		try {
 			Product prod = this.productService.findById(productId);

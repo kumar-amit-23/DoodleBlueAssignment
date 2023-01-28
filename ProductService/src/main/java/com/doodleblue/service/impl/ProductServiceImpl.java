@@ -14,9 +14,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepo;
 
 	@Override
-	public Product findById(Long id) throws Exception {
+	public Product findById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("Product" + productRepo.findById(id).get());
 		try {
 			return productRepo.findById(id).get();
 		} catch (Exception e) {
